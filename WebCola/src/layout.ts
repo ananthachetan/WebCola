@@ -744,16 +744,16 @@ import {separateGraphs, applyPacking} from './handledisconnected'
                 spCalc = new Calculator(vg2.V.length, vg2.E, sourceInd, targetInd, length),
                 shortestPath = spCalc.PathFromNodeToNode(start.id, end.id);
             if (shortestPath.length === 1 || shortestPath.length === vg2.V.length) {
-                let route = makeEdgeBetween(edge.source.innerBounds, edge.target.innerBounds, ah);
+                let route = makeEdgeBetween(edge.source.bounds, edge.target.bounds, ah);
                 lineData = [route.sourceIntersection, route.arrowStart];
             } else {
                 var n = shortestPath.length - 2,
                     p = vg2.V[shortestPath[n]].p,
                     q = vg2.V[shortestPath[0]].p,
-                    lineData = [edge.source.innerBounds.rayIntersection(p.x, p.y)];
+                    lineData = [edge.source.bounds.rayIntersection(p.x, p.y)];
                 for (var i = n; i >= 0; --i)
                     lineData.push(vg2.V[shortestPath[i]].p);
-                lineData.push(makeEdgeTo(q, edge.target.innerBounds, ah));
+                lineData.push(makeEdgeTo(q, edge.target.bounds, ah));
             }
             //lineData.forEach((v, i) => {
             //    if (i > 0) {
